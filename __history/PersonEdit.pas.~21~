@@ -1,0 +1,136 @@
+unit PersonEdit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, MemDS, DBAccess, Uni,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.Buttons, SolarCalendarPackage;
+
+type
+  TPersonEditForm = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    FirstNameEdit: TEdit;
+    lastNameEdit: TEdit;
+    salaryNumberEdit: TEdit;
+    BirthdaySolarDatePicker: TSolarDatePicker;
+    ShenasnameNumberEdit: TEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    nationalCodeEdit: TMaskEdit;
+    militaryRankComboBox: TComboBox;
+    PhoneNumberEdit: TMaskEdit;
+    fatherNameEdit: TEdit;
+    UniDataSource1: TUniDataSource;
+    UniQuery1: TUniQuery;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure ClearEdits(Owner: TWinControl);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PersonEditForm: TPersonEditForm;
+  PersonIds: Integer;
+
+implementation
+
+{$R *.dfm}
+
+uses dbcomponent;
+
+procedure TPersonEditForm.BitBtn2Click(Sender: TObject);
+
+begin
+
+dbcomponent.DataModule5.PersonUniTable.Open;
+//dbcomponent.DataModule5.PersonUniTable.AppendRecord([PersonIds,FirstNameEdit.Text,lastNameEdit.Text,nationalCodeEdit.Text
+//,salaryNumberEdit.Text,militaryRankComboBox.Text,BirthdaySolarDatePicker.Text,BirthdaySolarDatePicker.ConvertDate,ShenasnameNumberEdit.Text,fatherNameEdit.Text,PhoneNumberEdit.Text])
+
+
+
+dbcomponent.DataModule5.PersonUniTable.Edit;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_id').Value := PersonIds;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_first_name').Value := FirstNameEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_last_name').Value := lastNameEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_national_code').Value := nationalCodeEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_salary_number').Value := salaryNumberEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_military_rank').Value := militaryRankComboBox.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_shamsi_birthdate').Value := BirthdaySolarDatePicker.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_miladi_birthdate').Value := BirthdaySolarDatePicker.ConvertDate;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_shenasname_number').Value := ShenasnameNumberEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_father_name').Value := fatherNameEdit.Text;
+dbcomponent.DataModule5.PersonUniTable.FieldByName('person_phone_number').Value := PhoneNumberEdit.Text;
+
+dbcomponent.DataModule5.PersonUniTable.Post;
+
+
+
+end;
+
+procedure TPersonEditForm.FormActivate(Sender: TObject);
+var
+strArrayFS  : TArray<string>;
+strArrayT  : TArray<string>;
+i : Integer;
+j : Integer;
+charArray : Array[0..0] of Char;
+s : string;
+
+
+begin
+
+DataModule5.UniConnection1.Connect;
+
+
+    UniQuery1.Open;
+
+charArray[0] := ',';
+s := UniQuery1.FieldByName('type').AsString.Replace('enum(','').Replace(')','').Replace('''','');
+
+
+ strArrayT :=s.Split(charArray);
+
+    for i := 0 to Length(strArrayT)-1 do
+      militaryRankComboBox.Items.Add(strArrayT[i]);
+
+
+end;
+
+procedure TPersonEditForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+PersonEditForm.CleanupInstance;
+PersonEditForm.ClearEdits(PersonEditForm);
+end;
+
+procedure TPersonEditForm.ClearEdits(Owner: TWinControl);
+var i: integer;
+begin
+  for i := 0 to Owner.ComponentCount - 1 do
+
+  begin
+
+    if (Owner.Components[i]) is TEdit then TEdit(Owner.Components[i]).Clear;
+    if (Owner.Components[i]) is TMaskEdit then TMaskEdit(Owner.Components[i]).Clear;
+    if (Owner.Components[i]) is TSolarDatePicker then TSolarDatePicker(Owner.Components[i]).Clear;
+    if (Owner.Components[i]) is TComboBox then TComboBox(Owner.Components[i]).Clear;
+
+
+  end;
+
+
+end;
+
+end.

@@ -1,0 +1,179 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #1605#1575#1588#1740#1606' '#1581#1587#1575#1576
+  ClientHeight = 405
+  ClientWidth = 476
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzEdit1: TRzEdit
+    Left = 8
+    Top = 8
+    Width = 457
+    Height = 59
+    Text = ''
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object RzGroupBox1: TRzGroupBox
+    Left = 8
+    Top = 73
+    Width = 281
+    Height = 232
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    object RzButton3: TRzButton
+      Left = 192
+      Top = 16
+      Height = 65
+      Caption = '3'
+      TabOrder = 0
+      OnClick = RzButton3Click
+    end
+    object RzButton2: TRzButton
+      Left = 102
+      Top = 16
+      Height = 65
+      Caption = '2'
+      TabOrder = 1
+      OnClick = RzButton2Click
+    end
+    object RzButton1: TRzButton
+      Left = 14
+      Top = 16
+      Height = 65
+      Caption = '1'
+      TabOrder = 2
+      OnClick = RzButton1Click
+    end
+    object RzButton6: TRzButton
+      Left = 192
+      Top = 87
+      Height = 65
+      Caption = '6'
+      TabOrder = 3
+      OnClick = RzButton6Click
+    end
+    object RzButton5: TRzButton
+      Left = 102
+      Top = 87
+      Height = 65
+      Caption = '5'
+      TabOrder = 4
+      OnClick = RzButton5Click
+    end
+    object RzButton4: TRzButton
+      Left = 14
+      Top = 87
+      Height = 65
+      Caption = '4'
+      TabOrder = 5
+      OnClick = RzButton4Click
+    end
+    object RzButton9: TRzButton
+      Left = 192
+      Top = 158
+      Height = 65
+      Caption = '9'
+      TabOrder = 6
+      OnClick = RzButton9Click
+    end
+    object RzButton8: TRzButton
+      Left = 102
+      Top = 158
+      Height = 65
+      Caption = '8'
+      TabOrder = 7
+      OnClick = RzButton8Click
+    end
+    object RzButton7: TRzButton
+      Left = 14
+      Top = 158
+      Height = 65
+      Caption = '7'
+      TabOrder = 8
+      OnClick = RzButton7Click
+    end
+  end
+  object RzGroupBox2: TRzGroupBox
+    Left = 295
+    Top = 73
+    Width = 170
+    Height = 232
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    object RzButton11: TRzButton
+      Left = 7
+      Top = 16
+      Height = 65
+      Caption = '+'
+      TabOrder = 0
+    end
+    object RzButton14: TRzButton
+      Left = 8
+      Top = 158
+      Height = 65
+      Caption = '-'
+      TabOrder = 1
+    end
+    object RzButton17: TRzButton
+      Left = 7
+      Top = 87
+      Height = 65
+      Caption = '*'
+      TabOrder = 2
+    end
+    object RzButton12: TRzButton
+      Left = 89
+      Top = 158
+      Height = 65
+      Caption = '='
+      TabOrder = 3
+    end
+  end
+  object RzGroupBox3: TRzGroupBox
+    Left = 15
+    Top = 302
+    Width = 450
+    Height = 83
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    object RzButton0: TRzButton
+      Left = 95
+      Top = 9
+      Height = 65
+      Caption = '0'
+      TabOrder = 0
+      OnClick = RzButton0Click
+    end
+  end
+end

@@ -1,0 +1,77 @@
+unit Unit7;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,dbcomponent, DBGridEhGrouping, ToolCtrlsEh,
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,
+  Vcl.StdCtrls, Vcl.Buttons,Unit4;
+
+type
+  TForm7 = class(TForm)
+    DBGridEh1: TDBGridEh;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form7: TForm7;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit10, Unit9, Unit11, PersonEdit;
+
+procedure TForm7.BitBtn1Click(Sender: TObject);
+begin
+
+   PersonId := DBGridEh1.Fields[0].AsInteger;
+   form4.PersonComboBox.Text := DBGridEh1.Fields[1].AsString+' '+DBGridEh1.Fields[2].AsString+' ˜Ï '+DBGridEh1.Fields[0].AsString;
+   form7.Close;
+end;
+
+procedure TForm7.DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if (key = VK_F10) then
+begin
+   form11.ShowModal;
+end;
+
+
+if (key = VK_F2) then
+begin
+
+
+PersonEdit.PersonIds:=DBGridEh1.Fields[0].AsInteger;
+PersonEdit.Form12.FirstNameEdit.Text:= DBGridEh1.Fields[1].AsString;
+PersonEdit.Form12.lastNameEdit.Text  := DBGridEh1.Fields[2].AsString;
+
+form12.ShowModal;
+end;
+
+
+end;
+
+procedure TForm7.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+if (key = VK_F10) then
+begin
+   form10.ShowModal;
+end;
+
+end;
+
+end.

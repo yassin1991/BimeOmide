@@ -1,0 +1,21 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  Unit1 in 'Unit1.pas' {Form1},
+  Vcl.Themes,
+  Vcl.Styles,
+  Unit4 in 'Unit4.pas' {Form4},
+  dbcomponent in 'dbcomponent.pas' {DataModule5: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Luna');
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TDataModule5, DataModule5);
+  Application.Run;
+end.

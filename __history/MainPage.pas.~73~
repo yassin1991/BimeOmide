@@ -1,0 +1,207 @@
+﻿unit MainPage;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, frxClass, Vcl.Menus,
+  DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
+  GridsEh, DBAxisGridsEh, DBGridEh, DBAccess, Uni, MemDS, UniProvider,
+  PostgreSQLUniProvider, frxDBSet, Vcl.StdCtrls, SolarCalendarPackage, Vcl.Mask,
+  DBCtrlsEh, DBLookupEh, frxExportBaseDialog, frxExportPDF, frxGradient;
+
+type
+  TMainPageForm = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N3: TMenuItem;
+    SooratjalasefrxReport: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    DBGridEh1: TDBGridEh;
+    UniQuery1: TUniQuery;
+    frxGradientObject1: TfrxGradientObject;
+    PooshefrxReport: TfrxReport;
+    ShorayePezeshkiNaqseOzvefrxReport: TfrxReport;
+    ShorayePezeshkiSabolelajfrxReport: TfrxReport;
+    N4: TMenuItem;
+    About: TMenuItem;
+    N2: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+
+      procedure Edit();
+    procedure AboutClick(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MainPageForm: TMainPageForm;
+
+implementation
+
+{$R *.dfm}
+
+uses NewFile, dbcomponent, FileFind, FileEdit,AboutUs,Baygani;
+
+procedure TMainPageForm.AboutClick(Sender: TObject);
+begin
+         AboutUsForm.ShowModal;
+end;
+
+procedure TMainPageForm.DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_INSERT) then
+  begin
+
+    NewFileForm.ShowModal;
+  end;
+
+  if (Key = VK_F2) then
+  begin
+
+    FileEditForm.ShowModal;
+
+  end;
+
+  if (Key = VK_F10) then
+  begin
+
+    UniQuery1.AddWhere('file_id = ' + DBGridEh1.Fields[0].AsString);
+    SooratjalasefrxReport.ShowReport();
+
+    PooshefrxReport.ShowReport();
+
+  end;
+
+end;
+
+procedure TMainPageForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) then
+  begin
+    //dbcomponent.DataModule5.FileUniTable.DeleteWhere('file_id = ' + DBGridEh1.Fields[0].AsString);
+     //dbcomponent.DataModule5.FileUniTable.
+      //dbcomponent.DataModule5.FileUniTable.First;
+     //dbcomponent.DataModule5.FileUniTable.Edit;
+     //dbcomponent.DataModule5.FileUniTable.FieldByName('file_id').Value := DBGridEh1.Fields[0].AsString;
+     //dbcomponent.DataModule5.FileUniTable.Delete;
+    dbcomponent.DataModule5.MainViewUniTable.Refresh;
+    DBGridEh1.Refresh;
+  end;
+
+  if (Key = VK_INSERT) then
+  begin
+    //NewFileForm.Destroycompon;
+    NewFileForm.Send_date_SolarDatePicker.ShowDefaultDate := True;
+    NewFileForm.ShowModal;
+
+  end;
+
+  if (Key = VK_F10) then
+  begin
+    FindFileForm.ShowModal;
+  end;
+
+  if (Key = VK_F2) then
+  begin
+    Edit();
+
+  end;
+
+  if (Key = VK_F3) then
+  begin
+    UniQuery1.Connection;
+    UniQuery1.Open;
+
+    UniQuery1.DeleteWhere;
+
+    UniQuery1.AddWhere('file_id = ' + DBGridEh1.Fields[0].AsString);
+
+    UniQuery1.Open;
+
+    if UniQuery1.FieldByName('file_type').Text = 'بیماری' then
+    begin
+      PooshefrxReport.ShowReport();
+      ShorayePezeshkiSabolelajfrxReport.ShowReport();
+    end
+
+    else
+    begin
+
+      PooshefrxReport.ShowReport();
+
+      SooratjalasefrxReport.ShowReport();
+      ShorayePezeshkiNaqseOzvefrxReport.ShowReport();
+
+    end;
+
+  end;
+
+end;
+
+procedure TMainPageForm.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+  if (Key = VK_INSERT) then
+  begin
+    NewFileForm.ShowModal;
+  end;
+
+end;
+
+procedure TMainPageForm.N4Click(Sender: TObject);
+begin
+BayganiForm.ShowModal;
+end;
+
+procedure TMainPageForm.N5Click(Sender: TObject);
+begin
+     FindFileForm.ShowModal;
+end;
+
+procedure TMainPageForm.N6Click(Sender: TObject);
+begin
+     NewFileForm.Send_date_SolarDatePicker.ShowDefaultDate := True;
+    NewFileForm.ShowModal;
+end;
+
+procedure TMainPageForm.Edit();
+begin
+  FileEdit.FileId:= DBGridEh1.Fields[0].AsInteger;
+  FileEdit.PersonId:=DBGridEh1.Fields[16].AsInteger;
+  FileEdit.PatientId:=DBGridEh1.Fields[17].AsInteger;
+  FileEditForm.PersonComboBox.Text:= DBGridEh1.Fields[1].AsString + ' ' + DBGridEh1.Fields[2].AsString + ' کد ' + DBGridEh1.Fields[16].AsString;
+  FileEditForm.KindShip_ComboBox.Text:= DBGridEh1.Fields[18].AsString ;
+  FileEditForm.PatientComboBox.Text:= DBGridEh1.Fields[20].AsString + ' ' + DBGridEh1.Fields[21].AsString + ' کد ' + DBGridEh1.Fields[17].AsString ;
+  FileEditForm.File_typeComboBox.Text:= DBGridEh1.Fields[9].AsString ;
+  FileEditForm.accident_date_SolarDatePicker.Text:= DBGridEh1.Fields[11].AsString;
+  FileEditForm.File_StateComboBox.Text:=  DBGridEh1.Fields[10].AsString ;
+  FileEditForm.Send_date_SolarDatePicker.Text:=  DBGridEh1.Fields[12].AsString;
+  FileEditForm.delivered_dateSolarDatePicker.Text := DBGridEh1.Fields[19].AsString ;
+  FileEditForm.Folder_NameComboBox.Text:=  DBGridEh1.Fields[13].AsString;
+  FileEditForm.percentage_of_compensationComboBox.Text:= DBGridEh1.Fields[15].AsString;
+  FileEditForm.ExplainedEdit.Text:= DBGridEh1.Fields[26].AsString ;
+  FileEditForm.ShowModal;
+end;
+
+
+end.

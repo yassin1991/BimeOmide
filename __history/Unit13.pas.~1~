@@ -1,0 +1,43 @@
+unit Unit13;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, MemDS, DBAccess, Uni,
+  Vcl.StdCtrls, Vcl.Buttons, SolarCalendarPackage;
+
+type
+  TForm13 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    File_typeComboBox: TComboBox;
+    PersonComboBox: TComboBox;
+    PatientComboBox: TComboBox;
+    KindShip_ComboBox: TComboBox;
+    accident_date_SolarDatePicker: TSolarDatePicker;
+    Send_date_SolarDatePicker: TSolarDatePicker;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    UniDataSource1: TUniDataSource;
+    UniQuery1: TUniQuery;
+    UniQuery2: TUniQuery;
+    UniDataSource2: TUniDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form13: TForm13;
+
+implementation
+
+{$R *.dfm}
+
+end.

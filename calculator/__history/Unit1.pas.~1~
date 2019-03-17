@@ -1,0 +1,49 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzButton, Vcl.ExtCtrls, RzPanel,
+  Vcl.StdCtrls, Vcl.Mask, RzEdit;
+
+type
+  TForm1 = class(TForm)
+    RzEdit1: TRzEdit;
+    RzGroupBox1: TRzGroupBox;
+    RzButton3: TRzButton;
+    RzButton2: TRzButton;
+    RzButton1: TRzButton;
+    RzButton6: TRzButton;
+    RzButton5: TRzButton;
+    RzButton4: TRzButton;
+    RzButton9: TRzButton;
+    RzButton8: TRzButton;
+    RzButton7: TRzButton;
+    RzGroupBox2: TRzGroupBox;
+    RzButton11: TRzButton;
+    RzButton14: TRzButton;
+    RzButton17: TRzButton;
+    RzButton12: TRzButton;
+    RzGroupBox3: TRzGroupBox;
+    RzButton0: TRzButton;
+    procedure RzButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.RzButton1Click(Sender: TObject);
+begin
+RzEdit1.Text:=1;
+end;
+
+end.

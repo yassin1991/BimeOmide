@@ -1,0 +1,36 @@
+unit dbcomponent;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, MemDS, DBAccess, Uni, UniProvider,
+  PostgreSQLUniProvider;
+
+type
+  TDataModule5 = class(TDataModule)
+    PostgreSQLUniProvider1: TPostgreSQLUniProvider;
+    UniConnection1: TUniConnection;
+    PersonUniDataSource: TUniDataSource;
+    PersonUniTable: TUniTable;
+    PatientUniTable: TUniTable;
+    PatientUniDataSource: TUniDataSource;
+    FileUniTable: TUniTable;
+    FileUniDataSource: TUniDataSource;
+    FolderNameUniTable: TUniTable;
+    FolderNameUniDataSource: TUniDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule5: TDataModule5;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,52 @@
+unit PatientSearchFileEdit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,dbcomponent, DBGridEhGrouping,
+  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, Vcl.StdCtrls, Vcl.Buttons,
+  EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,FileEdit;
+
+type
+  TPatientSearchFileEditForm = class(TForm)
+    DBGridEh1: TDBGridEh;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PatientSearchFileEditForm: TPatientSearchFileEditForm;
+
+implementation
+
+{$R *.dfm}
+
+uses FileFind,FindPatient;
+
+procedure TPatientSearchFileEditForm.BitBtn1Click(Sender: TObject);
+begin
+PatientId := DBGridEh1.Fields[0].AsInteger;
+FileEditForm.PatientComboBox.Text := DBGridEh1.Fields[1].AsString+' '+DBGridEh1.Fields[2].AsString+' ˜Ï '+DBGridEh1.Fields[0].AsString;
+PatientSearchFileEditForm.Close;
+end;
+
+procedure TPatientSearchFileEditForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+if (key=VK_F10) then
+begin
+   FindPatientForm.ShowModal;
+   ShowMessage('');
+end;
+
+end;
+
+end.

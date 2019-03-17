@@ -1,0 +1,178 @@
+object BayganiForm: TBayganiForm
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = #1576#1575#1740#1711#1575#1606#1740
+  ClientHeight = 507
+  ClientWidth = 885
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object AdvToolPanel1: TAdvToolPanel
+    Left = 0
+    Top = 0
+    Width = 885
+    Height = 297
+    Align = alTop
+    BackgroundTransparent = False
+    BackGroundPosition = bpTopLeft
+    Button3D = False
+    HoverButtonColor = 14483455
+    HoverButtonColorTo = 6013175
+    DownButtonColor = 557032
+    DownButtonColorTo = 8182519
+    CaptionButton = False
+    Color = clSkyBlue
+    ColorTo = 13007698
+    GradientDirection = gdVertical
+    DockDots = False
+    Caption = 'AdvToolPanel1'
+    CaptionGradientDirection = gdVertical
+    FocusCaptionFontColor = clBlack
+    FocusCaptionColor = 9758459
+    FocusCaptionColorTo = 1414638
+    NoFocusCaptionFontColor = clWhite
+    NoFocusCaptionColor = 14059353
+    NoFocusCaptionColorTo = 9648131
+    CloseHint = 'Close panel'
+    LockHint = 'Lock panel'
+    UnlockHint = 'Unlock panel'
+    Sections = <>
+    SectionLayout.CaptionColor = 16244422
+    SectionLayout.CaptionColorTo = 14060643
+    SectionLayout.CaptionFontColor = 8661248
+    SectionLayout.CaptionRounded = False
+    SectionLayout.Corners = scRectangle
+    SectionLayout.BackGroundColor = 16248798
+    SectionLayout.BackGroundColorTo = 16242365
+    SectionLayout.BorderColor = clWhite
+    SectionLayout.BorderWidth = 1
+    SectionLayout.BackGroundGradientDir = gdVertical
+    SectionLayout.Indent = 4
+    SectionLayout.Spacing = 4
+    SectionLayout.ItemFontColor = 11876608
+    SectionLayout.ItemHoverTextColor = 11876608
+    SectionLayout.ItemHoverUnderline = True
+    SectionLayout.UnderLineCaption = False
+    ShowCaption = False
+    ShowCaptionBorder = False
+    Version = '1.6.0.2'
+    object RzGroupBox1: TRzGroupBox
+      Left = 1
+      Top = 1
+      Width = 883
+      Height = 295
+      Align = alTop
+      BiDiMode = bdRightToLeft
+      ParentBiDiMode = False
+      TabOrder = 0
+      object RzGroupBox2: TRzGroupBox
+        Left = 1
+        Top = 14
+        Width = 881
+        Height = 64
+        Align = alTop
+        BiDiMode = bdRightToLeft
+        Caption = #1588#1605#1575#1585#1607' '#1662#1585#1608#1606#1583#1607
+        ParentBiDiMode = False
+        TabOrder = 0
+        DesignSize = (
+          881
+          64)
+        object RzMaskEdit1: TRzMaskEdit
+          AlignWithMargins = True
+          Left = 518
+          Top = 31
+          Width = 353
+          Height = 21
+          Anchors = [akTop, akRight]
+          TabOrder = 0
+          Text = ''
+        end
+      end
+      object RzGroupBox3: TRzGroupBox
+        Left = 1
+        Top = 137
+        Width = 881
+        Height = 64
+        Align = alTop
+        Caption = #1583#1585#1589#1583
+        TabOrder = 1
+        DesignSize = (
+          881
+          64)
+        object RzMaskEdit2: TRzMaskEdit
+          AlignWithMargins = True
+          Left = 519
+          Top = 23
+          Width = 353
+          Height = 21
+          Anchors = [akTop, akRight]
+          TabOrder = 0
+          Text = ''
+        end
+      end
+      object RzGroupBox4: TRzGroupBox
+        Left = 1
+        Top = 78
+        Width = 881
+        Height = 59
+        Align = alTop
+        Caption = #1606#1575#1605' '#1586#1608#1605#1705#1606' '#1576#1575#1740#1711#1575#1606#1740
+        TabOrder = 2
+        DesignSize = (
+          881
+          59)
+        object RzComboBox2: TRzComboBox
+          AlignWithMargins = True
+          Left = 519
+          Top = 29
+          Width = 353
+          Height = 21
+          Anchors = [akTop, akRight]
+          TabOrder = 0
+          OnSelect = RzComboBox1Select
+        end
+      end
+    end
+    object Add: TRzButton
+      Left = 103
+      Top = 253
+      Width = 88
+      Height = 37
+      Caption = #1575#1601#1586#1608#1583#1606
+      TabOrder = 1
+      OnClick = AddClick
+    end
+    object Cancel: TRzButton
+      Left = 9
+      Top = 253
+      Width = 88
+      Height = 37
+      Align = alCustom
+      Caption = #1604#1594#1608
+      TabOrder = 2
+    end
+  end
+  object DBGridEh1: TDBGridEh
+    Left = 0
+    Top = 297
+    Width = 885
+    Height = 210
+    Align = alClient
+    DataSource = DataModule5.Baygani_folderDataSource
+    DynProps = <>
+    TabOrder = 1
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
+end

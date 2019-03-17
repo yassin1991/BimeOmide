@@ -1,0 +1,90 @@
+unit PatientSearchFileEdit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,dbcomponent, DBGridEhGrouping,
+  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, Vcl.StdCtrls, Vcl.Buttons,
+  EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,FileEdit;
+
+type
+  TPatientSearchFileEditForm = class(TForm)
+    DBGridEh1: TDBGridEh;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PatientSearchFileEditForm: TPatientSearchFileEditForm;
+
+implementation
+
+{$R *.dfm}
+
+uses FileFind,FindPatient,PersonEdit;
+
+procedure TPatientSearchFileEditForm.BitBtn1Click(Sender: TObject);
+begin
+PatientId := DBGridEh1.Fields[0].AsInteger;
+FileEditForm.PatientComboBox.Text := DBGridEh1.Fields[1].AsString+' '+DBGridEh1.Fields[2].AsString+' ˜Ï '+DBGridEh1.Fields[0].AsString;
+PatientSearchFileEditForm.Close;
+end;
+
+procedure TPatientSearchFileEditForm.DBGridEh1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+
+if (key=VK_F10) then
+begin
+   FindPatientForm.ShowModal;
+   ShowMessage('');
+end;
+if (key = VK_F2) then
+begin
+
+PersonEditing();
+
+end;
+
+end;
+
+procedure TPatientSearchFileEditForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+if (key=VK_F10) then
+begin
+   FindPatientForm.ShowModal;
+   ShowMessage('');
+end;
+
+end;
+
+
+procedure TPersonSearchForm.PersonEditing();
+begin
+
+PersonEdit.PersonIds:=DBGridEh1.Fields[0].AsInteger;
+PersonEdit.PersonEditForm.FirstNameEdit.Text:= DBGridEh1.Fields[1].AsString;
+PersonEdit.PersonEditForm.lastNameEdit.Text  := DBGridEh1.Fields[2].AsString;
+PersonEdit.PersonEditForm.nationalCodeEdit.Text :=  DBGridEh1.Fields[3].AsString;
+PersonEdit.PersonEditForm.salaryNumberEdit.Text:=   DBGridEh1.Fields[4].AsString;
+PersonEdit.PersonEditForm.militaryRankComboBox.Text  :=DBGridEh1.Fields[5].AsString;
+PersonEdit.PersonEditForm.BirthdaySolarDatePicker.Text := DBGridEh1.Fields[6].AsString;
+PersonEdit.PersonEditForm.ShenasnameNumberEdit.Text:= DBGridEh1.Fields[8].AsString;
+PersonEdit.PersonEditForm.fatherNameEdit.Text := DBGridEh1.Fields[9].AsString;
+PersonEdit.PersonEditForm.PhoneNumberEdit.Text :=DBGridEh1.Fields[10].AsString;
+PersonEditForm.ShowModal;
+
+end;
+
+end.

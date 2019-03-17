@@ -1,0 +1,58 @@
+unit Unit6;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,dbcomponent,
+  SolarCalendarPackage;
+
+type
+  TForm6 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    FirstNameEdit: TEdit;
+    lastNameEdit: TEdit;
+    BirthdaySolarDatePicker: TSolarDatePicker;
+    ShenasnameNumberEdit: TEdit;
+    nationalCodeEdit: TMaskEdit;
+    Label9: TLabel;
+    fatherNameEdit: TEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form6: TForm6;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit4;
+
+procedure TForm6.BitBtn2Click(Sender: TObject);
+begin
+
+   dbcomponent.DataModule5.PatientUniTable.Open;
+
+dbcomponent.DataModule5.PatientUniTable.AppendRecord([nil,FirstNameEdit.Text,lastNameEdit.Text,nationalCodeEdit.Text
+,BirthdaySolarDatePicker.Text,BirthdaySolarDatePicker.ConvertDate,ShenasnameNumberEdit.Text,fatherNameEdit.Text]);
+//lastNameEdit.Text:=FirstNameEdit.Text;
+
+Form6.Close;
+
+PatientId := dbcomponent.DataModule5.PatientUniTable.LastInsertId;
+form4.PatientComboBox.Text := FirstNameEdit.Text +' '+lastNameEdit.Text+' ˜Ï '+PersonId.ToString;
+
+end;
+
+end.

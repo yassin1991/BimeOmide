@@ -1,0 +1,164 @@
+﻿unit MainUnit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, frxClass, Vcl.Menus,
+  DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
+  GridsEh, DBAxisGridsEh, DBGridEh, DBAccess, Uni, MemDS, UniProvider,
+  PostgreSQLUniProvider, frxDBSet, Vcl.StdCtrls, SolarCalendarPackage, Vcl.Mask,
+  DBCtrlsEh, DBLookupEh, frxExportBaseDialog, frxExportPDF, frxGradient;
+
+type
+  TForm1 = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    SooratjalasefrxReport: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    DBGridEh1: TDBGridEh;
+    UniQuery1: TUniQuery;
+    frxGradientObject1: TfrxGradientObject;
+    PooshefrxReport: TfrxReport;
+    ShorayePezeshkiNaqseOzvefrxReport: TfrxReport;
+    ShorayePezeshkiSabolelajfrxReport: TfrxReport;
+    N4: TMenuItem;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit4,dbcomponent,Unit9,Baygani, Unit13;
+
+
+
+procedure TForm1.DBGridEh1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+         if (key=VK_INSERT) then
+         begin
+
+              form4.ShowModal;
+              form4.CleanupInstance;
+         end;
+
+         if (key = VK_F2) then
+         begin
+
+           form13.showModal;
+
+         end;
+
+
+
+         if(key=VK_F10) then
+         begin
+            //UniQuery1.Connection;
+            //UniQuery1.Open;
+
+            UniQuery1.AddWhere('file_id = '+ DBGridEh1.Fields[0].AsString);
+            SooratjalasefrxReport.ShowReport();
+
+            PooshefrxReport.ShowReport();
+
+
+
+         end;
+
+end;
+
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+if (key=VK_INSERT) then
+begin
+   form4.Destroycompon;
+   form4.ShowModal;
+
+end;
+
+if (key=VK_F10) then
+begin
+   form9.ShowModal;
+end;
+
+         if (key = VK_F2) then
+         begin
+
+           form13.showModal;
+
+         end;
+
+         if(key=VK_F3) then
+         begin
+            UniQuery1.Connection;
+            UniQuery1.Open;
+
+            UniQuery1.DeleteWhere;
+
+            UniQuery1.AddWhere('file_id = '+ DBGridEh1.Fields[0].AsString);
+
+
+
+
+            UniQuery1.Open;
+
+            if UniQuery1.FieldByName('file_type').text = 'بیماری' then
+            begin
+            PooshefrxReport.ShowReport();
+            ShorayePezeshkiSabolelajfrxReport.ShowReport();
+            end
+
+            else
+            begin
+
+            PooshefrxReport.ShowReport();
+
+            SooratjalasefrxReport.ShowReport();
+            ShorayePezeshkiNaqseOzvefrxReport.ShowReport();
+
+
+            end;
+
+
+
+
+
+
+         end;
+
+end;
+
+procedure TForm1.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+
+if (key=VK_INSERT) then
+begin
+form4.ShowModal;
+end;
+
+end;
+
+end.
+
+

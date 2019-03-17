@@ -1,0 +1,44 @@
+unit Unit9;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask;
+
+type
+  TForm9 = class(TForm)
+    Label1: TLabel;
+    NationalMaskEdit: TMaskEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form9: TForm9;
+
+
+
+implementation
+
+{$R *.dfm}
+
+
+uses Unit1,dbcomponent;
+
+procedure TForm9.BitBtn1Click(Sender: TObject);
+begin
+dbcomponent.DataModule5.MainViewUniTable.Open;
+dbcomponent.DataModule5.MainViewUniTable.AddWhere('person_national_code = '+ NationalMaskEdit.Text);
+
+//dbcomponent.DataModule5.MainViewUniDataSource.Enabled:=true;
+dbcomponent.DataModule5.MainViewUniTable.Active:=true;
+
+end;
+
+end.

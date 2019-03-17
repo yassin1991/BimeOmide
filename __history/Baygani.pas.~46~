@@ -1,0 +1,117 @@
+unit Baygani;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, ToolPanels, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
+  DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh, RzButton, Vcl.StdCtrls,
+  Vcl.Mask, RzEdit, RzPanel, RzGrids, RzPopups, AdvUtil, AdvObj, BaseGrid,
+  AdvGrid, MemDS, VirtualTable, RzCmboBx;
+
+type
+  TBayganiForm = class(TForm)
+    AdvToolPanel1: TAdvToolPanel;
+    RzGroupBox1: TRzGroupBox;
+    RzGroupBox2: TRzGroupBox;
+    RzMaskEdit1: TRzMaskEdit;
+    Cancel: TRzButton;
+    Add: TRzButton;
+    DBGridEh1: TDBGridEh;
+    RzGroupBox3: TRzGroupBox;
+    RzComboBox1: TRzComboBox;
+    procedure FormCreate(Sender: TObject);
+    procedure AddClick(Sender: TObject);
+    procedure RzComboBox1Select(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  BayganiForm: TBayganiForm;
+
+implementation
+
+{$R *.dfm}
+
+uses dbcomponent;
+
+procedure TBayganiForm.AddClick(Sender: TObject);
+begin
+  // dbcomponent.DataModule5.BayganiUniQuery.close;
+  // dbcomponent.DataModule5.BayganiUniQuery.SQL.Clear;
+  // dbcomponent.DataModule5.BayganiUniQuery.SQL.Text:='select * from main_view where file_id = ' + RzMaskEdit1.Text;
+  // dbcomponent.DataModule5.BayganiUniQuery.Open;
+
+  // Label1.Caption:=dbcomponent.DataModule5.BayganiUniQuery.FieldByName('file_id').AsString;
+
+  // dbcomponent.DataModule5.MainViewUniTable.AddWhere('file_id = ' + RzMaskEdit1.Text);
+  /// /VirtualTable1.InsertRecord(dbcomponent.DataModule5.MainViewUniTable.GetBookmark);
+  // VirtualTable1.Filtered:=true;
+  // VirtualTable1.Filter:='file_id = '+QuotedStr(RzMaskEdit1.Text);
+  // dbcomponent.DataModule5.MainViewUniTable.DeleteWhere;
+
+  //dbcomponent.DataModule5.PersonUniTable.AppendRecord([PersonIds,FirstNameEdit.Text,lastNameEdit.Text,nationalCodeEdit.Text
+  //,salaryNumberEdit.Text,militaryRankComboBox.Text,BirthdaySolarDatePicker.Text,BirthdaySolarDatePicker.ConvertDate,ShenasnameNumberEdit.Text,fatherNameEdit.Text,PhoneNumberEdit.Text])
+
+  dbcomponent.DataModule5.FileUniTable.close;
+
+  dbcomponent.DataModule5.FileUniTable.Open;
+
+  dbcomponent.DataModule5.FileUniTable.Edit;
+
+  dbcomponent.DataModule5.FileUniTable.FieldByName('file_id').Value := StrToInt(RzMaskEdit1.Text);
+
+  dbcomponent.DataModule5.FileUniTable.FieldByName('folder_name').Value := RzComboBox1.Text;
+
+  dbcomponent.DataModule5.FileUniTable.Post;
+
+end;
+
+procedure TBayganiForm.FormCreate(Sender: TObject);
+begin
+  // VirtualTable1.Clear;
+
+  with dbcomponent.DataModule5.BayganiUniQuery do
+  begin
+    close;
+    SQL.Clear;
+
+    SQL.Text := 'select * from folder_name';
+    Open;
+
+    dbcomponent.DataModule5.BayganiUniQuery.First;
+
+    while not dbcomponent.DataModule5.BayganiUniQuery.Eof do
+    begin
+      RzComboBox1.Items.Add(dbcomponent.DataModule5.BayganiUniQuery
+        ['folder_name']);
+
+      dbcomponent.DataModule5.BayganiUniQuery.Next;
+
+
+
+    end;
+    SQL.Clear;
+
+  end;
+
+end;
+
+procedure TBayganiForm.RzComboBox1Select(Sender: TObject);
+begin
+
+     dbcomponent.DataModule5.Baygani_Folder.close;
+     dbcomponent.DataModule5.Baygani_Folder.DeleteWhere;
+     dbcomponent.DataModule5.Baygani_Folder.AddWhere('folder_name ='+RzComboBox1.Text);
+     dbcomponent.DataModule5.Baygani_Folder.Open;
+     dbcomponent.DataModule5.Baygani_Folder.Active:=true;
+
+end;
+
+end.

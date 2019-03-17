@@ -1,0 +1,59 @@
+unit Destroy;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DBGridEhGrouping, ToolCtrlsEh,
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,
+  Vcl.ExtCtrls, ToolPanels, Vcl.StdCtrls, RzCmboBx, RzPanel;
+
+type
+  TDestroyForm = class(TForm)
+    AdvToolPanel1: TAdvToolPanel;
+    DBGridEh1: TDBGridEh;
+    RzGroupBox1: TRzGroupBox;
+    RzComboBox2: TRzComboBox;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DestroyForm: TDestroyForm;
+
+implementation
+
+{$R *.dfm}
+
+uses dbcomponent;
+
+procedure TDestroyForm.FormCreate(Sender: TObject);
+begin
+  with dbcomponent.DataModule5.BayganiUniQuery do
+  begin
+    close;
+    SQL.Clear;
+
+    SQL.Text := 'select * from folder_name';
+    Open;
+
+    dbcomponent.DataModule5.BayganiUniQuery.First;
+
+    while not dbcomponent.DataModule5.BayganiUniQuery.Eof do
+    begin
+      RzComboBox2.Items.Add(dbcomponent.DataModule5.BayganiUniQuery
+        ['folder_name']);
+
+      dbcomponent.DataModule5.BayganiUniQuery.Next;
+
+
+
+    end;
+    SQL.Clear;
+  end;
+end;
+
+end.

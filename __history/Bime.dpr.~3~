@@ -1,0 +1,37 @@
+program Bime;
+
+uses
+  Vcl.Forms,
+  MainPage in 'MainPage.pas' {MainPageForm},
+  Vcl.Themes,
+  Vcl.Styles,
+  NewFile in 'NewFile.pas' {NewFileForm},
+  dbcomponent in 'dbcomponent.pas' {DataModule5: TDataModule},
+  NewPerson in 'NewPerson.pas' {NewPersonForm},
+  NewPatient in 'NewPatient.pas' {NewPatientForm},
+  PersonSearch in 'PersonSearch.pas' {PersonSearchForm},
+  PatientSearch in 'PatientSearch.pas' {PatientSearchForm},
+  FileFind in 'FileFind.pas' {Form9},
+  Unit11 in 'Unit11.pas' {Form11},
+  PersonEdit in 'PersonEdit.pas' {Form12},
+  Unit13 in 'Unit13.pas' {Form13};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Luna');
+  Application.CreateForm(TDataModule5, DataModule5);
+  Application.CreateForm(TMainPageForm, MainPageForm);
+  Application.CreateForm(TNewPersonForm, NewPersonForm);
+  Application.CreateForm(TNewPatientForm, NewPatientForm);
+  Application.CreateForm(TPersonSearchForm, PersonSearchForm);
+  Application.CreateForm(TPatientSearchForm, PatientSearchForm);
+  Application.CreateForm(TNewFileForm, NewFileForm);
+  Application.CreateForm(TForm9, Form9);
+  Application.CreateForm(TForm11, Form11);
+  Application.CreateForm(TForm12, Form12);
+  Application.CreateForm(TForm13, Form13);
+  Application.Run;
+end.

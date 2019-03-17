@@ -1,0 +1,10 @@
+﻿[]
+Coordinates=10,40,56,33
+Visible=True
+LayerNames=NewLayer0
+
+[Module Settings]
+ModelLayerNames=NewLayer0
+ActiveLayerNames=NewLayer0
+EditingLayerName=NewLayer0
+
